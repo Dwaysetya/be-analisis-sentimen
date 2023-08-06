@@ -6,7 +6,7 @@ obj = database_model()
 @app.route('/dataset', methods=['GET'])
 def get_dataset():
     return obj.get_dataset()
-@app.route('/dataset/count', methods=['GET'])
+@app.route('/dataset/total', methods=['GET'])
 def get_dataset_count():
     return obj.get_dataset_count()
 @app.route('/dataset', methods=['POST'])

@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, make_response, json
 
 class LabelingService:
     def __init__(self, connection_pool):
@@ -83,7 +83,21 @@ class LabelingService:
             error_message = {"message": "Error counting dataset", "error": str(e)}
             return jsonify(error_message), 500
 
-
+    def update_label(self, id, data):
+        connection = self.connection_pool.get_connection()
+        cursor = connection.cursor()
+        try:
+            # Update the slangword in the table
+            query = "UPDATE label SET label = %s WHERE id = %s"
+            cursor.execute(query, (data['label'], id))
+            connection.commit()
+            return f'Label with ID {id} updated successfully'
+        except Exception as e:
+            error_message = {"status": 500, "message": str(e)}
+            return make_response(json.dumps(error_message), 500)
+        finally:
+            cursor.close()
+            connection.close()
     def close_connection(self):
         # No need for this method since connection is handled by the context manager
         pass

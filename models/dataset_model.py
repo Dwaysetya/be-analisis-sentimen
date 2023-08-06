@@ -42,7 +42,7 @@ class database_model():
 
             count = cursor.fetchone()[0]
 
-            return count
+            return {"count": count}
         except Exception as e:
             raise Exception("Failed to get dataset count: " + str(e))
         finally:

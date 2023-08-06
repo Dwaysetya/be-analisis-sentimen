@@ -1,5 +1,5 @@
 from app import app
-from flask import jsonify
+from flask import jsonify, request
 from models.labelling_model import LabelingService
 from database import DatabaseConnectionPool
 
@@ -29,3 +29,9 @@ def get_labelling():
         return jsonify(error_message), 500
     finally:
         labeling_service.close_connection()
+@app.route('/label/update/<id>', methods=['PUT'])
+def update_label(id):
+    connection_pool = DatabaseConnectionPool.get_instance().connection_pool
+    labeling_service = LabelingService(connection_pool)
+    data = request.get_json()
+    return labeling_service.update_label(id, data)
