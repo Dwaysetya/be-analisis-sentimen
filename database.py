@@ -20,8 +20,9 @@ class DatabaseConnectionPool:
                     pool_size=10,
                     host='localhost',
                     user='root',
-                    password='firman25',
-                    database='tugas_akhir'
+                    password='dwaysetya02',
+                    database='tugas_akhir',
+                    auth_plugin='mysql_native_password'
                 )
                 DatabaseConnectionPool.__instance = self
                 print("Connection pool created")

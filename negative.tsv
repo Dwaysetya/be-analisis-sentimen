@@ -7,7 +7,8 @@ isak	-5
 larat hati	-3
 nelangsa	-3
 remuk redam	-5
-tidak segan	-2
+tidak dapat gunakan -2
+tidak bagus -2
 gemar	-1
 tak segan	-1
 sesal	-4
@@ -50,6 +51,7 @@ sekali	-1
 menarik hati	-1
 cedayam	-2
 kece	-3
+kecewa  -4
 termakan	-1
 belom	-1
 malem	-1
@@ -86,12 +88,10 @@ menamatkan riwayatnya	-3
 hilang nyawa	-5
 males	-4
 asih	-1
-kasih sayang	-1
 kekaguman	-1
 dendam berahi	-4
 rindu	-3
 afeksi	-2
-cinta kasih	-1
 renjana	-2
 pagina	-2
 tresna	-1
@@ -190,7 +190,6 @@ hujan	-2
 aduh	-3
 cerita khayal	-2
 typo	-2
-langkah baik	-1
 isapan jempol	-3
 engah	-4
 mafhum	-1
@@ -338,7 +337,6 @@ preseden	-2
 miss	-4
 napa	-2
 ikutan	-3
-baik-baik	-1
 kesel	-5
 intensif	-4
 closed	-3
@@ -595,9 +593,7 @@ mentang	-3
 kepo	-3
 tobat	-2
 mentang-mentang	-4
-meringankan	-1
 astagfirullah	-4
-memudahkan	-1
 titip api	-1
 mencebikkan	-3
 fokus	-2
@@ -866,6 +862,7 @@ tai	-5
 kemaknagandaan	-3
 masa bodoh	-4
 final	-2
+finalti -2
 dimarahin	-5
 nyuruh	-3
 dibales	-3
@@ -1060,6 +1057,7 @@ stress	-5
 kemayu	-3
 mencangkum	-3
 berlama-lama	-2
+lama    -2
 diginiin	-3
 sihh	-2
 yakali	-3
@@ -1088,6 +1086,7 @@ anti	-2
 gabole	-2
 simpanan	-3
 ganggu	-4
+ngaganggu   -4
 sentimen	-3
 berperang	-4
 santunan	-2
@@ -1193,6 +1192,8 @@ iluminasi	-3
 selingkuhan	-5
 jones	-3
 banyak bicara	-3
+bego    -5
+
 hapus	-3
 mantan	-3
 iseng	-3
@@ -1660,6 +1661,7 @@ luluh	-3
 tersohor	-1
 rentan	-4
 iyasih	-2
+rusak   -4
 rusak binasa	-4
 menyebelahkan	-5
 anjer	-3
@@ -2088,7 +2090,6 @@ kabung	-5
 pasuk	-3
 khianat	-4
 kutil	-4
-dapat	-2
 kelakar	-4
 renti	-3
 cecer	-3
@@ -2108,6 +2109,7 @@ cela	-4
 sayang	-3
 jahat	-4
 remeh	-5
+remehin -5
 mudah	-1
 neng	-1
 mula	-3
@@ -2149,7 +2151,6 @@ kusut	-4
 menung	-3
 wara	-3
 keruh	-4
-gampang	-3
 sengal	-4
 kerumit	-5
 tugas	-1
@@ -2303,6 +2304,7 @@ jilat	-3
 tanggung	-2
 ana	-3
 rugi	-5
+hecker  -5
 gempar	-2
 gerombol	-4
 colong	-5
@@ -2354,6 +2356,8 @@ rongsok	-3
 tindik	-3
 luka	-5
 jangan	-3
+bingung -3
+download    -1
 bunyi	-1
 kerak	-2
 bekap	-3
@@ -2506,6 +2510,7 @@ hempas	-4
 ganjil	-4
 derita	-5
 bantah	-3
+banget  -2
 untung	-1
 sudah	-2
 hangus	-3
@@ -3356,7 +3361,6 @@ lucah	-5
 cekang	-3
 gondok	-4
 ambai	-5
-sangat	-5
 gendak	-5
 dalalah	-5
 kecintaan	-3
@@ -3523,6 +3527,9 @@ menampakkan	-4
 bercumbu	-4
 lalat kerbau	-4
 tidak keruan	-3
+tidak guna  -4
+tidak bisa  -3
+dasar   -4
 jaringan	-4
 duel	-4
 pencegah	-3
@@ -3687,7 +3694,6 @@ cakap	-4
 mengirikan	-4
 angkat topi	-4
 melanggar	-5
-memuaskan	-5
 berpasuk	-3
 percaturan	-3
 dengkur	-3
@@ -3811,7 +3817,6 @@ bertikai pangkai	-4
 harap-harap cemas	-3
 warita	-4
 bawa	-3
-mempermudah	-3
 merobohkan	-5
 besar rabu	-3
 surih	-3
@@ -3916,7 +3921,6 @@ batu berdahak	-4
 gegap	-5
 lotong	-4
 memperkacaukan	-4
-membantu	-4
 gemaung	-3
 pekak	-3
 tertulang	-5
@@ -4653,7 +4657,6 @@ tumpasan	-5
 susur tangan	-3
 safinah	-3
 robek	-3
-aplikasi	-4
 mustaka	-3
 menunggu	-3
 cekatan	-3
@@ -5572,7 +5575,7 @@ beol	-5
 caruk	-4
 mencengkam	-4
 kenan	-3
-bagus	-4
+kurang bagus	-1
 berbanding	-3
 carut	-5
 sipongang	-3
@@ -5689,7 +5692,6 @@ tugal	-4
 kicik	-3
 bermesraan	-3
 gelopak	-4
-menyenangkan	-3
 rekam	-3
 mendapati	-4
 kekhawatiran	-4
@@ -6317,7 +6319,6 @@ pedas	-4
 pedar	-4
 waswas	-3
 menonjok	-3
-aju	-3
 buang hajat	-5
 membosankan	-3
 bala	-5
@@ -6395,6 +6396,7 @@ tunggakan	-4
 kisi-kisi	-4
 rumbing	-4
 lahir kembali	-3
+kembali -3
 lenyap daratan	-4
 jenazah	-4
 pagi	-3
@@ -6608,3 +6610,6 @@ penggaruk	-3
 senewen	-4
 menetapkan	-5
 kacang botor	-3
+bug -4
+trouble  -4
+menuduh -4

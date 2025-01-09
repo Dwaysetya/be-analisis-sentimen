@@ -5,6 +5,13 @@ from models.testing_model import TestingModel
 @app.route('/testing', methods=['POST'])
 def run_testing():
     data = request.get_json()
+    print("booookk")
+    print(data)
+
+    # 9:1
+    # 9.1
+    # atau hasilnya 9:1
+
     ratio = float(data['ratio']) if data.get('ratio') is not None else None
     k = int(data['k']) if 'k' in data else None
 
@@ -32,22 +39,22 @@ def run_testing():
         'negative_count': negative_count,
         'training_data': [
             {
-                'tweet': tweet,
+                'raw_data': tweet,
                 'label': label
             }
             for tweet, label in zip(
-                testing_model.data_split['clean_tweets'],
+                testing_model.data_split['clean_data'],
                 testing_model.data_split['label']
             )
         ],
         'testing_data': [
             {
-                'tweet': tweet,
+                'raw_data': tweet,
                 'actual_label': actual_label,
                 'predicted_label': predicted_label
             }
             for tweet, actual_label, predicted_label in zip(
-                testing_model.test_data['clean_tweets'],
+                testing_model.test_data['clean_data'],
                 testing_model.test_data['label'],
                 predicted_labels
             )

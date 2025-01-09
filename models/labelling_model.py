@@ -4,35 +4,49 @@ class LabelingService:
     def __init__(self, connection_pool):
         self.connection_pool = connection_pool
 
-    def get_clean_tweet(self):
+    def get_clean_data(self):
         try:
             with self.connection_pool.get_connection() as connection:
                 with connection.cursor() as cursor:
-                    query = "SELECT clean_tweet FROM clean_data"
+                    query = "SELECT clean_data FROM clean_data"
                     cursor.execute(query)
-                    clean_tweet = [row[0] for row in cursor.fetchall()]
-                    return clean_tweet
+                    clean_data = [row[0] for row in cursor.fetchall()]
+                    return clean_data
         except Exception as e:
             error_message = {"message": "Error getting clean tweets", "error": str(e)}
             return jsonify(error_message), 500
 
     def load_lexicon(self, lexicon_file):
         lexicon = {}
+        
+        try:
+            with open(lexicon_file, 'r', encoding='utf-8') as file:
+                # Skip the header row
+                lines = file.readlines()[1:]  
+                
+                for line in lines:
+                    # Skip empty lines
+                    if line.strip():
+                        try:
+                            word, weight = line.strip().split('\t')
+                            lexicon[word] = int(weight)  # Ensure weight is an integer
+                            # print(f"Loaded word '{word}' with weight '{weight}'")
+                        except ValueError:
+                            print(f"Skipping malformed line: {line.strip()}")
 
-        with open(lexicon_file, 'r', encoding='utf-8') as file:
-            lines = file.readlines()[1:]  # Skip the header row
-
-            for line in lines:
-                word, weight = line.strip().split('\t')
-                lexicon[word] = int(weight)
+        except FileNotFoundError:
+            print(f"Error: File '{lexicon_file}' not found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
         return lexicon
 
-    def label_tweets(self, clean_tweets, negative_lexicon, positive_lexicon):
+    def label_tweets(self, clean_data, negative_lexicon, positive_lexicon):
         labeled_tweets = []
 
-        for tweet in clean_tweets:
+        for tweet in clean_data:
             label = self.calculate_label(tweet, negative_lexicon, positive_lexicon)
+            print(f"Tweet: {tweet}, Label: {label}")
             labeled_tweets.append((tweet, label))
 
         return labeled_tweets
@@ -55,11 +69,13 @@ class LabelingService:
 
     def save_labels(self, labeled_tweets):
         try:
+            # print(labeled_tweets)
             with self.connection_pool.get_connection() as connection:
                 with connection.cursor() as cursor:
-                    for _, label in labeled_tweets:
-                        query = "INSERT INTO label (label) VALUES (%s)"
-                        cursor.execute(query, (label,))
+                    for text, label in labeled_tweets:
+                        print(text)
+                        query = "INSERT INTO label (label, text) VALUES (%s, %s)"
+                        cursor.execute(query, (label, text))
                 connection.commit()
             print("Labels saved successfully")
         except Exception as e:

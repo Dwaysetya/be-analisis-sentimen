@@ -20,7 +20,7 @@ class database_model():
             for row in dataset:
                 dataset_list.append({
                     'id': row[0],
-                    'raw_tweet': row[1],
+                    'raw_data': row[1],
                     'username': row[2],
                     'created_at': row[3],
                 })
@@ -60,16 +60,18 @@ class database_model():
             connection = self.connection_pool.get_connection()
             cursor = connection.cursor()
             for _, row in df.iterrows():
-                date_str = row['created_at']
-                tweet = row['raw_tweet']
-                username = row['username']
+                username = row['userName']
+                score = row['score']
+                date_str = row['at']
+                tweet = row['content']
 
                 # Parse the date string into a datetime object
-                date = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S%z")
+                date = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+
 
                 cursor.execute(
-                    "INSERT INTO dataset (created_at, raw_tweet, username) VALUES (%s, %s, %s)",
-                    (date_str, tweet, username)
+                    "INSERT INTO dataset (created_at, raw_data, username, score) VALUES (%s, %s, %s, %s)",
+                    (date_str, tweet, username, score)
                 )
                 connection.commit()
 
@@ -88,7 +90,7 @@ class database_model():
 
             # Query to retrieve data from the tables
             query = """
-                SELECT dataset.id AS id, dataset.created_at AS created_at, dataset.username AS username, dataset.raw_tweet AS raw_tweet, label.label AS label
+                SELECT dataset.id AS id, dataset.created_at AS created_at, dataset.username AS username, dataset.raw_data AS raw_data, label.label AS label
                 FROM dataset
                 JOIN label ON dataset.id = label.id
             """
@@ -106,7 +108,7 @@ class database_model():
                     'id': row[0],
                     'created_at': str(row[1]),
                     'username': row[2],
-                    'raw_tweet': row[3],
+                    'raw_data': row[3],
                     'label': row[4]
                 })
 

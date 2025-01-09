@@ -7,14 +7,14 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import pandas as pd
 import re
 import nltk
-nltk.download('punkt')
-from nltk.tokenize  import word_tokenize
+nltk.download('punkt_tab')
+from nltk.tokenize import word_tokenize
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 class preprocessing_model():
     def __init__(self):
         self.connection_pool = DatabaseConnectionPool.get_instance().connection_pool
-        self.raw_headers = ['id', 'created_at', 'raw_tweet', 'username']
+        self.raw_headers = ['id', 'created_at', 'raw_data', 'username']
         self.awal_data = []
         self.caseFolding_data = []
         self.cleansing_data = []
@@ -25,19 +25,19 @@ class preprocessing_model():
         self.data_akhir = []
         self.slang_headers = ['id', 'kata_baku', 'kata_slang']
         self.stopwords_headers = ['id', 'kata_stop']
-    def retrieve_raw_tweets(self):
+    def retrieve_raw_data(self):
         try:
             obj = database_model()
             data = obj.get_dataset()
 
             data_raw = []
             for result in data:
-                rs = [str(result['id']), result['created_at'], result['raw_tweet'], result['username']]
+                rs = [str(result['id']), result['created_at'], result['raw_data'], result['username']]
                 data_raw.append(dict(zip(self.raw_headers, rs)))
 
             return data_raw
         except Exception as e:
-            error_message = f"An error occurred while retrieving raw tweets: {str(e)}"
+            error_message = f"An error occurred while retrieving raw data: {str(e)}"
             # You can log the error or print it for debugging purposes
             print(error_message)
             return []
@@ -89,10 +89,10 @@ class preprocessing_model():
             stemmer = instance_stemming.create_stemmer()
 
             for index, data in enumerate(data_raw):
-                self.awal_data.append(data['raw_tweet'])
+                self.awal_data.append(data['raw_data'])
 
                 # Case Folding: Mengubah huruf menjadi huruf kecil
-                casefolded_data = data['raw_tweet'].lower()
+                casefolded_data = data['raw_data'].lower()
                 self.caseFolding_data.append(casefolded_data)
 
                 # === Menghapus Tautan ===
@@ -140,7 +140,7 @@ class preprocessing_model():
 
             # Move appending operations outside the loop
             for cleaned_tweet in self.data_akhir:
-                query = "INSERT INTO clean_data (clean_tweet) VALUES (%s)"
+                query = "INSERT INTO clean_data (clean_data) VALUES (%s)"
                 cursor.execute(query, (cleaned_tweet,))
                 connection.commit()
 
@@ -176,7 +176,7 @@ class preprocessing_model():
             response = make_response(json.dumps(response_data), 500)
             return response
     def preprocessing(self):
-        data_raw = self.retrieve_raw_tweets()
+        data_raw = self.retrieve_raw_data()
         data_slang = self.retrieve_slangwords()
         data_stopwords = self.retrieve_stopwords()
         preprocessed_data = self.preprocess_data(data_raw, data_slang, data_stopwords)

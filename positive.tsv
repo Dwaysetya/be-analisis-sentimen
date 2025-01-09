@@ -81,6 +81,8 @@ yasalamualaika	3
 uang lelah	2
 parsel	2
 amplop	3
+uang    2
+transfer    2
 kenang-kenangan	3
 pengasih	4
 uang rokok	2
@@ -273,6 +275,8 @@ artistik	4
 wah	3
 imut-imut	4
 langkah baik	4
+baik    3
+lebih baik  4
 langkah kanan	3
 guys	1
 profit	4
@@ -298,6 +302,8 @@ peran serta	3
 masif	2
 gratis	4
 membantu	4
+sangat membantu 5
+mempermudah 3
 busana	2
 hasad	2
 keki	1
@@ -321,6 +327,7 @@ thank	4
 hujan ringan	2
 sobat	4
 panjang tungkai	2
+panjang 2
 trims	4
 doa	4
 pacaran	3
@@ -665,15 +672,20 @@ kelucuan	3
 keduniaan	1
 tawakal	3
 cash	2
+cashback    4
 mengesahkan	2
 pamrih	1
+bingung 1
 join	1
 pancaroba	1
 kunjungi	3
 berdaya guna	4
+guna    2
 modifikasi	2
+gunakan 1
 mengirat	2
 searah	1
+download    1
 khusyuk	3
 adi	2
 sob	2
@@ -735,6 +747,8 @@ berbagi	2
 kabar	2
 tiara	3
 lancar	4
+astrafinancial  1
+welab   1
 lanjutkan	1
 baik-baik	3
 pelancar	2
@@ -1055,6 +1069,9 @@ bertemu	2
 persamaan	2
 guruh	2
 lumayan	1
+lumayan bagus   1
+aplikasi    1
+keren   4
 mengembang	1
 selfie	2
 album	3
@@ -1344,6 +1361,7 @@ upah	1
 globe	1
 menginsafi	3
 banyak akal	3
+banyak  2
 mumpung	2
 suara	2
 besar hati	3
@@ -1372,6 +1390,7 @@ tentangan	2
 kepoin	2
 sedap	5
 tahan lama	1
+tahan   1
 lulus	5
 mengganyang	1
 ijtihad	3
@@ -1445,6 +1464,12 @@ berhajat	2
 nabi	2
 kualifikasi	2
 luar biasa	4
+luar biasa bagus    4
+agak bagus  1
+bagus sekali    3
+baik sekali 2
+cukup bagus 1
+bagus banget    3
 intim	2
 peka	2
 awet	4
@@ -1491,6 +1516,7 @@ menyiapkan	1
 mengasihi	2
 terpana	1
 sunyi	1
+saqu    1
 penyeragaman	1
 mengucil	1
 segenap	2
@@ -1499,6 +1525,7 @@ cendekia	3
 permata	3
 natal	1
 terpukau	2
+bank    2
 naik ke pelaminan	3
 gembira	5
 pelajar	1
@@ -1584,6 +1611,7 @@ lafal	2
 rasuk	2
 liat	2
 hati	2
+claim   1
 jihad	3
 larut	1
 pundi	2
@@ -1631,7 +1659,9 @@ pasti	3
 keliru	1
 kucup	2
 aku	2
+seandainya  2
 bom	1
+cair    1
 aib	1
 kerubung	1
 bangan	2
@@ -1782,6 +1812,7 @@ telungkup	1
 pandang	1
 baik	3
 tarik	2
+penarikan   2
 cakap	2
 panjat doa	4
 imbal	1
@@ -1795,6 +1826,7 @@ jenak	1
 mulai	1
 gores	1
 terima	2
+terimakasih 2
 sila	1
 silah	3
 poin	2
@@ -1897,6 +1929,7 @@ lucu	3
 gali ilmu	4
 hayat	3
 jejal	1
+ingin   3
 arah	1
 antisipasi	3
 hidup	2
@@ -1912,6 +1945,7 @@ kasih	2
 dekat	1
 iktikad	2
 tunggu dunia	2
+tunggu  2
 angsur	1
 budi pekerti yang baik	3
 hikmah	2
@@ -1978,6 +2012,7 @@ indah	3
 kenyam	1
 serta	2
 bagus	2
+sangat bagus    3
 taksir	3
 hubung	1
 kait	1
@@ -2092,6 +2127,7 @@ sakelek	4
 manja	5
 memperelok	3
 fit	4
+fitur   2
 mengizinkan	3
 widyaiswara	3
 paduka	4
@@ -2103,6 +2139,7 @@ menghikayatkan	3
 perserikatan	3
 penghuni	3
 cendera	4
+aju 1
 ugahari	3
 sohor	4
 besar akal	4
@@ -2389,7 +2426,6 @@ menistakan	4
 resep	3
 teranggar-anggar	3
 penat	4
-aneh	4
 lestari	4
 ganjaran	5
 emir	4
@@ -3605,4 +3641,7 @@ melarikan	3
 vakansi	3
 spesial	4
 asrama	3
-orisinal	3
+orisinal    3
+semoga  1
+sekali  3
+baik    5
