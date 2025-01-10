@@ -2,7 +2,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import euclidean_distances
 import numpy as np
 import random
 from database import DatabaseConnectionPool
@@ -12,7 +11,7 @@ class TestingModel:
         self.connection_pool = DatabaseConnectionPool.get_instance().connection_pool
         self.data_split = {'created_at': [], 'raw_data': [], 'clean_data': [], 'label': []}
         self.test_data = {'created_at': [], 'raw_data': [], 'clean_data': [], 'label': []}
-        self.ratio = ratio
+        self.ratio = ratio  # Ratio of training data (e.g., 0.8 means 80% training, 20% testing)
         self.k = k
         self.fetch_data_clean()
 
@@ -31,8 +30,6 @@ class TestingModel:
                     cursor.execute(query)
                     data = cursor.fetchall()
 
-                    print("blok")
-
                     for row in data:
                         created_at, raw_data, clean_data, label = row
                         self.data_split['created_at'].append(created_at)
@@ -45,7 +42,7 @@ class TestingModel:
 
     def process_data(self):
         combined_data = list(zip(self.data_split['created_at'], self.data_split['raw_data'],
-                                self.data_split['clean_data'], self.data_split['label']))
+                                 self.data_split['clean_data'], self.data_split['label']))
 
         # Shuffle the data randomly before splitting
         random.shuffle(combined_data)
@@ -56,14 +53,10 @@ class TestingModel:
         print("Positive:", label_distribution_before.count(1))
         print("Negative:", label_distribution_before.count(0))
 
-        split_index = int(len(combined_data) * self.ratio)
-
-
-        train_data = combined_data[:split_index]
-        test_data = combined_data[:split_index]
-
-        
-        # print(test_data)
+        # Split data into training and testing sets based on the ratio
+        train_size = int(len(combined_data) * self.ratio)
+        train_data = combined_data[:train_size]  # Data latih
+        test_data = combined_data[train_size:]  # Data uji
 
         # Print the label distribution after splitting
         train_label_distribution = [item[3] for item in train_data]
@@ -74,28 +67,34 @@ class TestingModel:
         print("Label Distribution in Test Data:")
         print("Positive:", test_label_distribution.count(1))
         print("Negative:", test_label_distribution.count(0))
-    
+
+        # Assign data latih ke self.data_split
         train_created_at, train_raw_data, train_clean_data, train_label = zip(*train_data)
         self.data_split['created_at'] = list(train_created_at)
         self.data_split['raw_data'] = list(train_raw_data)
         self.data_split['clean_data'] = list(train_clean_data)
-        self.data_split['label'] = list(train_label)  # Map labels to binary values
+        self.data_split['label'] = list(train_label)
 
+        # Assign data uji ke self.test_data
         test_created_at, test_raw_data, test_clean_data, test_label = zip(*test_data)
         self.test_data['created_at'] = list(test_created_at)
         self.test_data['raw_data'] = list(test_raw_data)
         self.test_data['clean_data'] = list(test_clean_data)
         self.test_data['label'] = list(test_label)
 
+        # Vectorize data latih
         tfidf_vectorizer = TfidfVectorizer()
         X_train_tfidf = tfidf_vectorizer.fit_transform(self.data_split['clean_data'])
 
+        # Train the KNN model
         knn_model = KNeighborsClassifier(n_neighbors=self.k)
-        knn_model.fit(X_train_tfidf, self.data_split['label'])  # Fit the model to the training data
+        knn_model.fit(X_train_tfidf, self.data_split['label'])
 
+        # Transform and predict data uji
         X_test_tfidf = tfidf_vectorizer.transform(self.test_data['clean_data'])
         predicted_labels = knn_model.predict(X_test_tfidf)
 
+        # Calculate metrics
         accuracy = accuracy_score(self.test_data['label'], predicted_labels)
         cm = confusion_matrix(self.test_data['label'], predicted_labels)
         precision = precision_score(self.test_data['label'], predicted_labels)
@@ -105,8 +104,7 @@ class TestingModel:
         return accuracy, cm, precision, recall, f1, predicted_labels
 
     def evaluate_model(self):
-        accuracy, cm, precision, recall, f1 = self.process_data()
-
+        accuracy, cm, precision, recall, f1, predicted_labels = self.process_data()
         return {
             'accuracy': accuracy,
             'confusion_matrix': cm.tolist(),
@@ -114,16 +112,3 @@ class TestingModel:
             'recall': recall,
             'f1_score': f1
         }
-
-    def test_model(self):
-        accuracy, cm, precision, recall, f1 = self.process_data()
-
-        response = {
-            'accuracy': accuracy,
-            'confusion_matrix': cm.tolist(),
-            'precision': precision,
-            'recall': recall,
-            'f1_score': f1
-        }
-
-        return response
